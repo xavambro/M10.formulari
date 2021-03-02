@@ -2,10 +2,8 @@
     <div class="form-group">
       <label for="'type'" >{{label}}</label>
       <input type="'type'" :class="valid" id="'type'" v-model="inp">
-      
-<!--       <input type="'type'" class="form-control" id="'type'" :value="value"  @input="$emit("input",$event.target.value)" v-bind="checkValidity(inp)">
+<!--  <input type="'type'" class="form-control" id="'type'" :value="value"  @input="$emit("input",$event.target.value)" v-bind="checkValidity(inp)">
  -->
-      <!-- <p v-if='error>0' class="alert alert-danger">{{msg}}</p> -->
       <div v-if='error>0' class="invalid-feedback">{{msg}}</div>
     </div>
 </template>
@@ -13,32 +11,15 @@
 <script>
 export default {
     name:'FormInput',
-    props:['type','input','label'],
+    props:['type','input','label','pass'],
     data(){
       return{
         inp:'',
         error:1,
         msg:'Camp buït',
-        valid:'form-control is-invalid'
+        valid:'form-control is-invalid',
+        
         }
-    },
-    computed:{
-      /* errorPlus(){
-        return this.error++
-      },
-      changeMsg(){
-        return this.msg = 'asd'
-      } */
-      /* error(){ */
-        /* get:function(){
-          return this.error
-        }, 
-        set:function(value){
-          this.error = value
-        } */
-        /* error=0
-        return error; */
-      
     },
     watch:{
       inp: function(){
@@ -54,7 +35,50 @@ export default {
               this.isValid()
           }
 
+        }else if (this.$props.input == 'inputMobile'){
+          if(!this.isRequired(this.inp)||!this.isNumber(this.inp)){
+            this.error=1;
+            this.msg='El valor no pot ser buït, ha de ser un número';
+            this.isInvalid()
+          }else{
+              this.isValid()
+          }
+        }else if (this.$props.input == 'inputPostal'){
+          if(!this.isRequired(this.inp)||!this.isNumber(this.inp)){
+            this.error=1;
+            this.msg='El valor no pot ser buït, ha de ser un número';
+            this.isInvalid()
+          }else{
+              this.isValid()
+          }
+        }else if (this.$props.input == 'inputEmail'){
+          if(!this.isRequired(this.inp)||!this.isEmail(this.inp)){
+            this.error=1;
+            this.msg='El valor no pot ser buït, ha de ser un email vàlid';
+            this.isInvalid()
+          }else{
+              this.isValid()
+          }
+        }else if (this.$props.input == 'inputPass'){
+          if(!this.isRequired(this.inp)||!this.isUpperAndLower(this.inp)||!this.validLength(this.inp)){
+            this.error=1;
+            this.msg='El valor no pot ser buït, ha de contenir una minúscula i una majúscula i entre 6 i 13 caràcters,';
+            this.isInvalid()
+          }else{
+             this.$emit('pass',this.inp);
+              
+            this.isValid()
+          }
+        }else if (this.$props.input == 'inputPass1'){
+          if(this.inp != this.pass){
+            this.error=1;
+            this.msg='El password ha de coincidir';
+            this.isInvalid()
+          }else{
+              this.isValid()
+          }
         }
+
       }
     },
     methods:{
@@ -82,51 +106,31 @@ export default {
       isNumber(value){
         return /^[0-9]*$/.test(value);
       },
-      isUpperAndLower(value){
-        return /^(?=[a-z]+[A-Z]+|[A-Z]+[a-z]+)[a-zA-Z]$/.test(value);
+      isUpperAndLower(value){      
+        return /(?=.*[a-z])(?=.*[A-Z])/.test(value);
       },
-
+      isEmail(value){
+        return /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
+      },
       validLength(value){
         console.log(value.length);
         if(value.length >= 6 && value.length < 14) {
           
           return true;
         }else{
-          console.log("not valid length")
+          console.log("not valid length");
           return false;
         }
 
       },
-      /* checkValidity(value){
-        this.error =0;
-         this.msg='';
-        if(this.$props.input == 'inputName'){
-          if(!this.isRequired(value)||!this.isText(value)||!this.validLength(value)){
-            this.error=1;
-            this.msg='El valor no pot ser buït, ha de ser text i ha de contenir entre 6 i 13 caràcters.';
-          }
-
-        }
-        if(value=='inputMobile'){
-
-        }
-        if(value=='inputPostal'){
-          
-        }
-        if(value=='inputEmail'){
-          
-        }
-        if(value=='inputPass'){
-          
-        }
-        if(value=='inputPass1'){
-          
-        }
-
-      } */
-
       
-    },
+    }
     
 }
 </script>
+
+<style scoped>
+.form-group{
+    text-align: left
+}
+</style>
