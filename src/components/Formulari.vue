@@ -2,7 +2,7 @@
 <div class="container">
   <form @submit.prevent="sendForm">
     <h1>Formulari</h1>
-    <p v-if='errors' class="alert alert-danger">No es pot validar el formulari. Comprova els camps</p>
+    <p v-if='errors' class="alert alert-danger">No es pot validar el formulari. Ompla els camps</p>
     <p v-if='valid' class="alert alert-success">Formulari validat correctament.</p>
     <FormInput type="name" label="Nom:" input="inputName"></FormInput>
     <FormInput type="mobile" label="Mòbil:" input="inputMobile"></FormInput>

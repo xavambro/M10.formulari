@@ -5,8 +5,8 @@ export default {
       return{
         inp:'',
         error:true,
-        msg:'Camp buït',
-        valid:'form-control is-invalid',
+        msg:'',
+        valid:'',
         
         }
     },
@@ -72,11 +72,11 @@ export default {
     },
     methods:{
       isValid(){
-        this.valid = "form-control is-valid"
+        this.valid = "is-valid"
       },
 
       isInvalid(){
-        this.valid = "form-control is-invalid"
+        this.valid = "is-invalid"
 
       },
 
