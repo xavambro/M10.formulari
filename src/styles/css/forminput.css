@@ -1,3 +1,8 @@
 .form-group{
-    text-align: left
+    text-align: left;
+    margin-bottom: 30px;
+    position:relative;
+}
+.invalid-feedback {
+    position:absolute;
 }
