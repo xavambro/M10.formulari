@@ -1,5 +1,5 @@
 import FormInput from '../components/FormInput'
-
+import Fade from '../animations/Fade'
 export default {
   name: 'Formulari',
   data(){
@@ -10,7 +10,8 @@ export default {
     }
   },
   components:{
-    FormInput
+    FormInput,
+    Fade
   },
   methods:{
     getPass(value){

@@ -4,7 +4,9 @@
       <input type="'type'" :class='"form-control "+valid' id="'type'" v-model="inp">
 <!--  <input type="'type'" class="form-control" id="'type'" :value="value"  @input="$emit("input",$event.target.value)" v-bind="checkValidity(inp)">
  -->
-      <div v-if='error' class="invalid-feedback">{{msg}}</div>
+      <Fade>
+        <div v-if='error' class="invalid-feedback">{{msg}}</div>
+      </Fade>
     </div>
 </template>
 

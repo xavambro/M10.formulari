@@ -2,7 +2,9 @@
 <div class="container">
   <form @submit.prevent="sendForm">
     <h1>Formulari</h1>
+    <Fade>
     <p v-if='errors' class="alert alert-danger">No es pot validar el formulari. Ompla els camps</p>
+    </Fade>
     <p v-if='valid' class="alert alert-success">Formulari validat i enviat correctament.</p>
     <FormInput type="name" label="Nom:" input="inputName" :reset='valid'></FormInput>
     <FormInput type="mobile" label="Mòbil:" input="inputMobile" :reset='valid'></FormInput>

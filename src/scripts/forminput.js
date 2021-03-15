@@ -1,10 +1,11 @@
+import Fade from '../animations/Fade'
 export default {
   name: 'FormInput',
   props: ['type', 'input', 'label', 'pass', 'reset'],
   data() {
     return {
       inp: '',
-      error: true,
+      error: false,
       msg: '',
       valid: '',
       skip: ''
@@ -129,6 +130,7 @@ export default {
     },
 
   },
+  components: {Fade}
 
   
 }
